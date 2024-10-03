@@ -1,0 +1,101 @@
+Technical interview process
+
+CLARIFICATION: Upon receving a technical question:
+    - Ask total number of technical question
+    - Paraphrase to make sure you understand the question
+    - Ask about function signature:
+        - Input:
+            - how many inputs? (number of arguments)
+            - how is the input store? (TODO: not sure what this is)
+            - input data structure, data type.
+            - Clarify input range, minimum, maximum?
+            - Other constraint like LeetCode?
+        - Output:
+            - modify the input? or output a new copy?
+            - output data type? can I output None?
+        - Note down test cases for different input to output?
+    - Communicate any additional assumption
+    - Further clarification and corner cases for data types:
+        Integer:
+            - Negative value
+
+        String:
+            - Empty string
+            - 1 or 2 length string
+            - Duplicate char string
+            - Unique char string
+
+        Array, Queue, Stack:
+            - Empty array
+            - 1 or 2 length array
+            - Duplicate item array
+            - Distinct item array
+            - Are you allowed to use the same indexed value?
+            - Sort ascending, descending, mountain, valley pattern?
+
+        Matrix:
+            - Empty matrix
+            - 1 item matrix
+            - 1 row or 1 column matrix
+
+        Recursion:
+            - n = 0, n = 1, n = None
+            - Other basecase based on algorithm
+
+        Intervals:
+            - https://www.techinterviewhandbook.org/algorithms/interval/
+
+        Linked List:
+            - Empty head
+            - Single node (1 head)
+            - Two nodes
+            - Cycle in linked list
+
+        Tree:
+            - Empty tree
+            - Single node tree (1 root)
+            - Two node tree
+            - Skewed tree (like linked list)
+
+        Trie:
+            - Search empty string in Trie
+            - Insert empty string in Trie
+        
+        Graph:
+            - Empty graph
+            - 1 node graph
+            - 2 node graph
+            - disconnected or connected graph
+            - cyclic or acyclic graph
+            - directed or undirected graph
+
+COMMUNICATE: Design a solution: 
+    - Talk about data structure/algorithm that can be used, which you plan to do?
+    - Use pseudocode to iterate/discuss your idea (they want to know how you arrive to solution)
+    - Discuss complexity of such approach
+        - see if the interviewer understand and agree with the approach
+        - compare different approach
+        - discuss the time and space complexity
+        - discuss the time to write the solution as well
+    - GET GREEN LIGHT TO START: 
+        “This looks good to me. Should I start writing the code now?”
+
+SOLUTION: Writing Solution:
+    - Start with naive approach (brute force)
+    - Use clear variable (short and meaningful)
+        - variable name should describe the data
+    - Write in modular fashion, use helper function
+    - Ask for API/Builtin function if forgot
+    - Speak out loud when crafting your solution (Thought process is important)
+
+TESTING: write unit test cases:
+    - Use edge cases (as discussed during clarification)
+        - brainstorm more edge cases with interviewer
+    - Look for places to refractor
+    - Reiterate the time and space complexity
+    - Discuss about about optimizing here
+        - Ask clarifying question on what tradeoff it should be
+            - Runtime complexity
+            - Space complexity
+            - Time to implement
+

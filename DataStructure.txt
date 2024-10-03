@@ -1,0 +1,94 @@
+Clarifying question based on
+
+Array:
+    Array (1D Array):
+        - Binary Search
+        - Sliding Window
+        - 2 Pointer
+        - Quick Select
+        
+    Matrix (2D Array):
+        - Matrix Rotation/Traversal
+        - DFS/BFS
+
+Queue:
+    Queue:
+        - Level Order Traversal of Tree
+        - BFS
+        - Circular Queue
+
+    Monotonic Queue:
+        - Sliding Window Maximum
+
+    Priority Queue:
+        - Dijkstra's Algorithm
+        - Prim's Algorithm
+        - Heap Sort
+
+Stack:
+    Stack:
+        - DFS
+        - Infix to Postfix Conversion
+        - Balanced Parentheses Problem
+
+    Monotonic Stack:
+        - Next Greater Element Problem
+        - Largest Rectangle in Histogram
+
+Linked List:
+    Singly Linked List:
+        - Floyd’s Cycle Detection Algorithm
+        - Reversal of Linked List
+        - Merge Sort
+
+    Doubly Linked List:
+        - LRU Cache
+
+    Circular Linked List:
+        - Josephus Problem
+
+Tree:
+    Binary Tree:
+        - Inorder, Preorder, Postorder Traversal
+        - Lowest Common Ancestor (LCA)
+        - Binary Tree Diameter
+
+    Binary Search Tree:
+        - Inorder Traversal for Sorted Elements
+        - Insertion, Deletion, Search
+
+    AVL Tree: (self balancing binary tree)
+        - Self-Balancing Operations: uses balance factor to balance the tree, b_f = h_l(height left sub tree) - h_r
+
+    Trie (Prefix Tree): (hash map where key are alphabet, value are hash map)
+        - Autocomplete
+        - Word Search in a Dictionary
+
+    Segment Tree: (used on arrays to answer range query)
+        - Range Queries
+        - Range Updates
+
+Graph:
+    - Breath First Search BFS
+    - Deapth First Search DFS
+    - Dijkstra’s Algorithm
+    - Bellman-Ford Algorithm
+    - Floyd-Warshall Algorithm
+    - Union-Find (Disjoint Set)
+
+Heap (min, max):
+    Heap Sort
+    Dijkstra’s Algorithm
+    K-th Largest/Smallest Element
+    Median Maintenance
+
+
+Hash Set:
+    Duplicate Detection
+    Union-Find
+    Counting Elements in a Range
+
+Hash Table/Map:
+    Caching (LRU, LFU)
+    Frequency Count
+    Group Anagrams

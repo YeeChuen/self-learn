@@ -1,0 +1,37 @@
+5 points
+
+Code Comprehension:
+    Outstanding:
+        recognizes and optimizes design pattern in Code
+        demonstrate broard and deep knowledge of standard library and framework
+        demonstrate full understanding of provided code sample
+        able to identify many logic and structural deficiencies and suggest correction
+
+Programming:
+    Outstanding:
+        language feature
+        readable
+        well structure
+        variable name
+        usage of helper method
+        fluently translate idea(pseudocode/discussion) into code with little to no difficulty
+        progressively test their code and revise as necessary (manual testing)
+
+Data Structure and Algorithm:
+    Outstanding:
+        problem solving
+        optimize solution (how optimize can your solution be)
+
+Debugging, Diagnose and Resolution:
+    Outstanding:
+        Error,
+        Syntax error,
+        need to be able to correct it
+        able to find edge cases, clarify input bounds/range
+        able to describe your test scenario, data and walk through the code
+    
+Growth Mindset:
+    Outstanding:
+        able you able to make progress without minimal assistant from interviewer
+        able to ask clarifying question
+        incorporate feedback into solution, act on the feedback

@@ -1,0 +1,62 @@
+Postgreql:
+    reference:
+        https://www.youtube.com/watch?v=BLH3s5eTL4Y
+
+    SQL Shell (psql):
+        Server: localhost
+        Databse: postgres
+        Port: 5432
+        Username: postgres
+        Password: check onepass
+
+        help:
+            basic command for help
+
+        type "q":
+            to move out of "\?"
+
+        \?:
+            list all database available
+
+        \d:
+            to describe the database
+
+        \dt:
+            to see all table
+
+        \x:
+            toggle expand the display (show the table data in column format)
+
+        \i <file_path>:
+            to execute the file, format: .sql (and you will write your SQL here)
+
+    notes: 
+        when writing SQL language in SQL Shell
+        the line only get executed when you add semi-colon at the end ";"
+
+        use ' instead of " for string
+
+    create database:
+        CREATE DATABASE test;
+
+    create table:
+        CREATE TABLE person (
+            id BIGSERIAL NOT NULL PRIMARY KEY,
+            name VARCHAR(100) NOT NULL,
+            country VARCHAR(50) NOT NULL 
+        );
+
+    add data:
+        INSERT INTO person (name, country) VALUES ('Amigos code', 'UK');
+        
+        INSERT INTO person (name, country) VALUES ('John mayor', 'USA');
+        INSERT INTO person (name, country) VALUES ('Theo Von', 'Malaysia');
+
+    update data:
+        UPDATE person SET name = 'Antonio Edo' WHERE id = 1;
+
+    delete data:
+        DELETE FROM person WHERE id = 2;
+
+    query table:
+        SELECT * FROM person;

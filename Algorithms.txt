@@ -1,0 +1,649 @@
+ALGORITHM (Python example)
+
+Array Algorithm:
+    Quick Select: (Array) (find kth in index)
+        reference:
+            https://www.youtube.com/watch?v=AqMiMkPOutQ
+
+        Quick Select has 2 component:
+            - partition(arr, start, end)    (method)    : Used to get the index of the last element IF it's sorted.
+            - quick_select(arr, start, end, k)  (method): Perform quick select algorithm in a recursive style.
+
+        note:
+            quick select used inclusive end.
+
+        Code example:
+            def partition(nums, start, end):
+                l = start
+                pivot_num = nums[end]
+                for r in range(start, end):
+                    if nums[r] <= pivot_num:
+                        nums[l], nums[r] = nums[r], nums[l]
+                        l += 1
+                nums[l], nums[end] = nums[end], nums[l]
+                return l
+            
+            def quick_select(nums, start, end, k):
+                p_index = partition(nums, start, end)
+                if p_index == k - 1:
+                    return p_index
+                elif k - 1 < p_index:
+                    return quick_select(nums, start, p_index - 1, k)
+                else:
+                    return quick_select(nums, p_index + 1, end, k)
+
+    2 Pointer: (Array, String)
+        2 Pointer feature:
+            - left and right index
+
+        Code example:
+            def two_pointer(nums):
+                l = 0
+                r = len(nums) - 1
+                while l < r:
+                    # some rule here, in 2sum example, we check
+                    if sum[l] + sum[r] == target:
+                        return [l, r]
+                    # then we move l and r depending on rules
+                    if sum[l] + sum[r] < target:
+                        l += 1
+                    else:
+                        r -= 1
+
+    Sliding Window: (Array, String)
+        Sliding Window feature:
+            - left and right index
+        
+        Code example:  # in this example, we look for subarray equal to target
+            def sliding window(nums, target):
+                l = 0
+                summ = 0
+                for r in range(len(nums)):
+                    summ += nums[r]
+                    if summ == target:
+                        return nums[l:r]
+                    # conditional here to move the left pointer
+                    while summ < target:
+                        summ -= nums[l]
+                        l += 1
+                    
+    Binary Search: (Array)
+        Binary Search feature:
+            - start and end index
+            - array need to be sorted
+
+        Code example:
+            def binary_search(nums, target):
+                start = 0
+                end = len(nums) - 1 # <-- inclusive end
+                while start < end:
+                    mid = (start + end) // 2
+                    if nums[mid] == target:
+                        return mid
+                    if nums[mid] < target:
+                        start = mid + 1
+                    else 
+                        end = mid
+
+    Prefix/Suffix Sum: (Array)
+        Prefix Sum is an array that contain all the prefix summation (inclusive of i)
+        It is useful to get the sum of range
+        Suffix sum is the same, but you iterate from behind.
+
+        Code example:
+            def prefix_sum(nums):
+                prefix = [0] * len(nums)
+                total = 0
+                for i in range(len(nums)):
+                    total += nums[i]
+                    prefix[i] = total
+                return prefix
+            
+            def range(left, right):
+                return prefix[right] - prefix[left - 1] if left > 0 else prefix[right]
+    
+    Longest Consecutive Subsequence (Int Array):
+        def longestConsecutive(self, nums):
+            nums_set = set(nums)
+            max_consecutive = 0
+            for num in nums:            
+                # we skip everything else and 
+                # we only run computation if num is the starting number
+                if num - 1 not in nums_set: 
+                    consecutive = 1
+                    n = num + 1
+                    while n in nums_set: # <-- each element will only go through this set ONCE.
+                        n += 1
+                        consecutive += 1
+                    max_consecutive = max(max_consecutive, consecutive)
+            return max_consecutive
+
+    Copy Array:
+        def copy(nums):
+            return nums[:]
+    
+    Reverse Array:
+        def reverse(nums):
+            return nums[::-1]
+
+    Get Random from Array:
+        import random
+        random.random(list1)
+
+    Delete specific item by index in Array:
+        using del, remove by index
+            del list1[2] # <-- this remove the item at index 2
+        using remove, remove by value (first occurence)
+            list1.remove("Item")
+        using pop, remove and return the element at index
+            list1.pop()
+        using clear, remove all
+            list1.clear()
+
+    Add multiple element to Array (not append): 
+        list1.extend(list2) # <-- add list2 to list1
+
+    Searching
+        list1.index("item") # <-- find the index of first occurence of "item"
+
+Graph Algorithm:
+    Breath First Search: (Tree, Graph)
+        Code example (basic structure):
+            def bfs(graph, start_node)
+                q = [start_node]
+                visited = [False] * graph_size (could be list, or set)
+                visited[start_node] = True
+                while q:
+                    # basic pathing
+                    curr_node = q.pop(0)
+                    for n in graph[curr_node]:
+                        if not visited[n]:
+                            visited[n] = True
+                            q.append(n)
+                    
+
+                    # if you need to get the layer information
+                    size = len(q)
+                    for _ in range(size):
+                        # do your pop here. 
+                        # do your neighbor visit here.
+
+    Depth First Search: (Tree, Graph)
+        Code example (basic structure):
+            def dfs_recursive(curr_node, graph, visited):
+                visited[curr_node] = True
+
+                # Visit all the neighbors recursively
+                for neighbor in graph[curr_node]:
+                    if not visited[neighbor]:
+                        dfs_recursive(neighbor, graph, visited)
+    
+    Union Find: (Tree, Graph) (check cycle in undirected graph)
+        reference: 
+            https://leetcode.com/problems/redundant-connection/solutions/3553428/python-simple-and-clean-beats-88/
+            https://www.youtube.com/watch?v=ayW5B2W9hfo
+
+        Union Find has 3 component:
+            - parent        (list/map)  : parent list to track the parent of each index
+            - find(x)       (method)    : find the parent of x
+            - union(x, y)   (method)    : Union x and y so they have the same parent.
+        
+        Code example:
+            parent = [i for i in range(n)]
+
+            def find(x):
+                while parent[x] != x:
+                    parent[x] = parent[parent[x]]
+                    x = parent[x]
+                return x
+
+            def union(x, y):
+                p_x, p_y = find(x), find(y)
+                if p_x == p_y:
+                    return True # <-- return can change depending of uses.
+                parent[p_y] = p_x
+                return False
+
+    Graph Coloring:
+        use BFS layer traversal method, and constantly rotate on the colors
+
+    Clone Graph:
+        use a dictionary/hash map where key value pair
+            key = old node
+            value = new node
+        pseudocode:
+            use bfs
+            for every curr node in bfs queue
+                create a key value pair for the node
+                for each neighbor
+                    dict[oldnode].neighor = oldnode.neighbor
+
+
+Back Tracking: (Tree, Graph, Array) (combinations, permutation) (dfs structure)
+    Code example (basic structure):
+        cache = {} # <-- add caching to improve performance    
+        # runtime using cache = O(n ^ k) where k is the size of path
+        # cache does not effect permutation
+        def backtrack(search_space, path, k, solution):
+            # when using caching, create key from given input, use tuple
+            key = (tuple(search_space), tuple(path))
+            if key in cache:
+                return cache[key]
+
+            # any conditional here 
+            # in this example, we look at combination of size k
+            if len(path) == k:
+                # update your cache if you're using cache.
+                solution.append(path[:]) # <-- use slice operator to copy.
+                return  # <-- use return here to breack any sort of base case you have.
+            
+            for i in range(len(search_space)):
+                # for combinations use below: O(2^n)
+                backtrack(search_space[i + 1:], path + [search_space[i]], k, solution)
+
+                # for permutation use below: O(n!)
+                backtrack(search_space[:i] + search_space[i + 1:], path + [search_space[i]], k, solution)
+
+
+Tree algorithm:
+    Tree traversal:
+        preorder, inorder, postorder
+        def traversal(node):
+            if not node:
+                return
+            # do current node stuff here for preorder
+            traversal(node.left)
+            # do current node stuff here for inorder
+            traversal(node.right)
+            # do current node stuff here for postorder
+    
+    Is Same Tree:
+        def is_same_tree(root_a, root_b):
+            def same_tree(root_a, root_b):
+                if not root_a and not root_b:
+                    return True
+                elif root_a and root_b:
+                    return (
+                        root_a.val == root_b.val and 
+                        same_tree(root_a.left, root_b.left) and 
+                        same_tree(root_b.right, root_b.right)
+                        )
+                else:
+                    return False
+            return same_tree(root_a, root_b)
+    
+    is Symmetric Tree:
+        similar to is same tree, but in recursion you pass in
+        left.right with right.left and left.left with right.right
+
+    Get depth:
+        max:
+            def max_depth(root):
+                def depth(node):
+                    if not node:
+                        return 0
+                    d = max(depth(node.left), depth(node.right)) + 1
+                    return d
+                return depth(root)
+        min: 
+            def min_depth(root):
+                if not root:
+                    return 0
+
+                minn = [float("inf")]
+                def depth(node, d):
+                    if not node:
+                        return
+                    if not node.left and not node.right:
+                        minn[0] = min(minn[0], d)
+                        return
+                    depth(node.left, d + 1)
+                    depth(node.right, d + 1)
+                depth(root, 1)
+                return minn[0]
+    
+    Balanced Binary Tree:
+        def isBalanced(self, root: Optional[TreeNode]) -> bool:
+            def balance(node):
+                if not node:
+                    return 0
+
+                h_l = balance(node.left)
+                h_r = balance(node.right)
+
+                if h_l == -1 or h_r == -1: return -1
+                if (abs(h_l - h_r) > 1): return -1
+
+                return max(h_l, h_r) + 1
+
+            return not balance(root) == -1
+        
+    Invert Tree:
+        def invertTree(self, root):
+            q = [root]
+            while q:
+                curr_node = q.pop(0)
+                if curr_node:
+                    curr_node.left, curr_node.right = curr_node.right, curr_node.left
+                    q.append(curr_node.left)
+                    q.append(curr_node.right)
+            return root
+
+Sorting Algorithm:
+    Dutch National Flag Problem:
+        (used when there is only 3 distinct element in the array)
+        def dutch_sort(nums):
+            low = mid = 0
+            high = len(nums) - 1
+            while mid <= high:
+                if nums[mid] == 0:
+                    nums[low], nums[mid] = nums[mid], nums[low]
+                    low += 1
+                    mid += 1
+                elif nums[mid] == 1:
+                    mid += 1
+                else:
+                    nums[mid], nums[high] = nums[high], nums[mid]
+                    high -= 1
+            return nums
+
+    Selection Sort
+        from i = 0 to n, j = i + 1 to n, 
+        find the smallest in j loop,
+        when j loop ends, swap the smallest index found with i
+    Insertion Sort
+        from i = 1 to n, 
+        j = i + 1 if  i has smaller number than j
+        loop while j > -1 and j > the ith number
+        we keep shifting the element up
+        once we exit the loop, we place the former ith number to j index.
+
+    Merge Sort
+        divide and conquer style
+    Quick Sort
+        uses quick select, chooses a pivot then place the pivot to its correct spot
+        then split array into two, and do quick select again
+    Heap Sort
+        convert array to heap, then constantly pop heap
+        and place it into the correct position.
+
+Linked List algorithm:
+    Reverse:
+        def reverse(head):
+            new_head = None
+            curr = head
+            while curr:
+                new_tail = curr.next
+                curr.next = new_head
+                new_head = curr
+                curr = new_tail
+            return new_head
+
+    Mid Point:
+        def middle(head):
+            slow = fast = head
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+            return slow
+
+    Delete Node: 
+        (delete the given node in a linked list) (NOT TAIL)
+        def delete(node):
+            node.val = node.next
+            node.next = node.next.next
+
+        (delete base on conditional, in this example, delete if node.val < target)
+        def delete(node, target):
+            dummy = ListNode(next = node)
+            curr = dummy
+            while curr:
+                if curr.next and curr.next.val < target:
+                    curr.next = curr.next.next
+                else:
+                    curr = curr.next
+            return dummy.next
+
+    Intersection:
+        (to get intersection we can add padding to both l1 and l2)
+        (i.e. if l1 have length 2 and l2 have length 4, after we pad, both have length of 6)
+        def get_intersection(head_1, head_2):
+            curr_1, curr_2 = head_1, head_2
+            while curr_1 != curr_2:
+                curr_1 = curr_1.next if curr_1 else head_2
+                curr_2 = curr_2.next if curr_2 else head_1
+                
+            return curr_1 # or curr_2 is fine as well
+
+    Palindrome:
+        Find mid point
+        reverse the slow pointer
+        then while loop on both slow and fast:
+            return false if slow.val != fast.val
+        return true
+
+Divide and Conquer:
+    (idea is to recursively divide the larger data into smaller until base case, and solve from there)
+    (simple example is to find max in an array)
+    def find_max(nums):
+        def find(nums, s, e):
+            if s == e: # <-- base case
+                return nums[s]
+            mid = (s + e) // 2
+            return max(find(nums, s, mid), find(nums, mid + 1, e)) # <-- divide and conquer
+        return find(nums, 0, len(nums) - 1)
+
+String algorithm:
+    Counting Character: (String, Array)
+        from collections import Counter
+        count = Counter(string)
+
+    Anagram:
+        approach 1(convert string to list, sort them and compare them)
+        approach 2(Array style hash table (if only 26 character))
+        approach 3(hash map counter and compare both hashmap counter.)
+
+    Palindrome:
+        (use two pointer, left and right)
+        (increment left and decrement right)
+        (ensure character at left == character at right)
+
+    Duplicate:
+        def has_duplicate(string):
+            return len(set(string)) == len(list(string))
+
+Dynamic Programming:
+    Pascal Triangle (DP(Matrix), Given: Integer):
+        def pascal_triangle(num_row):
+            pascal_triangle = [[1]]
+            for i in range(1, num_row + 1):
+                row = [1]
+
+                # compute middle
+                for j in range(len(pascal_triangle[i - 1]) - 1):
+                    row.append(pascal_triangle[i - 1][j] + pascal_triangle[i - 1][j + 1])
+
+                row.append(1)
+                pascal_triangle.append(row)
+            return pascal_triangle
+
+    Maximum Subarray (Kadane's Algorithm) (DP(Array), Given: Array): Important
+        def max_subarray(nums):
+            maxx = float("-inf")
+            curr = 0
+            
+            dp = [num for num in nums]
+            for i in range(len(dp)):
+                curr += nums[i]
+                maxx = max(maxx, curr)
+                if curr < 0: # we should always consider curr until its less than 0
+                    curr = 0
+                dp[i] = maxx
+            return dp[len(nums) - 1]
+
+    Longest Common Subsequence (LCS) (DP(Matrix), Given: text_1(String), text_2(String)):
+        def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+            n = len(text1)
+            m = len(text2)
+            dp = [[0 for _ in range(m + 1)] for _ in range(n + 1)]
+
+            for i in range(1, n + 1):
+                for j in range(1, m + 1):
+                    # this is 2D dp
+                    # if condition satisfy, we take diagonal
+                    if text1[i - 1] == text2[j - 1]:
+                        dp[i][j] = dp[i - 1][j - 1] + 1
+                    # if condition does not satisfy, we take left or top
+                    else:
+                        dp[i][j] = max(dp[i - 1][j], dp[i][j -1 ])
+            
+            return dp[n][m]
+
+    Longest Increasing Subsequence (LIS) (DP(Int Array), Given: Array):
+        def lengthOfLIS(self, nums: List[int]) -> int:
+            dp = [1] * len(nums) # <-- base case, every index 1 length
+
+            for i in range(len(dp)):
+                for j in range(i): # <-- we iterate all previous, 
+                    if nums[i] > nums[j]: # <-- if it is smaller
+                        dp[i] = max(dp[i], 1 + dp[j]) # <-- we choose the larger value, curr or prev + 1
+
+            return max(dp)
+
+    Subset Sum (DP(Matrix), Given: Value(Array), Target(Int)):
+        def subset_sum(nums, target):
+            dp = [[True if i == 0 else False for i in range(target + 1)] for _ in range(len(nums))]
+
+            for i in range(len(nums)):
+                for j in range(target, 0, -1):
+                    # check if previous element able to obtain
+                    dp[i][j] = dp[i - 1][j]
+
+                    # if we consider current ith item
+                    j_idx = j - nums[i]
+                    if 0 <= j_idx <= target:
+                        dp[i][j] = (
+                            dp[i][j] or # <-- check previous i - 1
+                            dp[i - 1][j_idx] # <-- check if we include this element
+                            )
+
+            return dp[len(nums) - 1][target]
+
+    Path (DP(Matrix), Given: matrix):
+        Minimum path and Unique path are very similar 
+        def path(matrix):
+            # for min path
+            dp = [[float("inf") for _ in grid[0]] for _ in grid]
+
+            # for unique path
+
+
+            for y in range(len(dp)):
+                for x in range(len(dp[0])):
+                    # for minimum path
+                    if y == 0 and x == 0:
+                        dp[y][x] = grid[y][x]
+                    else:
+                        if y > 0 and x > 0:
+                            dp[y][x] = grid[y][x] + min(dp[y - 1][x], dp[y][x - 1])
+                        elif y > 0:
+                            dp[y][x] = grid[y][x] + dp[y - 1][x]
+                        elif x > 0:
+                            dp[y][x] = grid[y][x] + dp[y][x - 1]
+                    
+                    # for unique path
+                    if y > 0 and x > 0:
+                        dp[y][x] = dp[y - 1][x] + dp[y][x - 1]
+                    elif y > 0:
+                        dp[y][x] = dp[y - 1][x]
+                    elif x > 0:
+                        dp[y][x] = dp[y][x - 1]
+
+            return dp[-1][-1]
+
+    House Robber (DP(Array), Given: Array):
+        def rob(nums):
+            dp = [0] * len(nums)
+            for i in range(len(dp)):
+                if i == 0: # base case 1: when there is 1 house
+                    dp[i] = nums[i] 
+                elif i == 1: # base case 2: when there is 2 house
+                    dp[i] = max(dp[i - 1], nums[i])
+                else:
+                    dp[i] = max(
+                        dp[i - 1], # rob previous house
+                        dp[i - 2] + nums[i] # rob current house
+                    )
+            return dp[-1]
+
+    KnapSack (DP(Matrix),  Given: Value(Array), Limit Per Value(Array), Max Value(Int)):
+        def knapsack(wt, val, W):
+            # column is the weight
+            # row is the item and its value
+            dp = [[0 for _ in range(W + 1)] for _ in range(len(val))]
+            
+            for i in range(len(dp)): # iterate possible items
+                for j in range(1, len(dp[0])): # iterate all possible weights
+                    if i == 0: # base case if there is only 1 item to steal
+                        dp[i][j] = val[i] if j - wt[i] >= 0 else 0
+                        continue
+                    # choose not to steal this item, profit is from previously seen item
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j])
+                    
+                    # choose to steal this item
+                    left_weight = j - wt[i]
+                    if left_weight >= 0:
+                        dp[i][j] = max(dp[i][j], dp[i - 1][left_weight] + val[i])
+                        
+            return dp[-1][-1]
+
+    Stone Game (DP(Matrix), Given: Array):
+        (too long & complicated, refer to:
+            https://leetcode.com/problems/stone-game/
+        )
+        (essentially its a )
+
+    Rod Cutting (DP(Array)):
+        def rod_cutting(val):    
+            dp = [0] + [num for num in val] # <-- base case where the minimum price is the length itself
+            
+            for i in range(2, len(dp)): # <-- compare starts when there is length of 2
+                for j in range(i): # compare again previous length
+                    value = val[j] # we cut this length
+                    length_left = i - j - 1 # the length left
+                    if length_left > 0:
+                        dp[i] = max(dp[i], value + dp[length_left])
+                        
+            return dp[-1]
+
+
+Memoization:
+    Basic Structure:
+        DFS (combinations) + memoization(cache)
+
+    (create a recursive method, but use a hash map to cache the answer)
+    def memo(arr):
+        cache = {}
+        def recursive(...args):
+            if ...args in cache:
+                return cache[...args]
+            # your recursive basecase
+            # your recursive method
+
+Heap + Priority Queue:
+    Use Python heapq:
+        import heapq
+        arr = [2,65,1,1...]
+        heapq.heapify(arr) # <-- now this array is heap
+
+        heapq.heappop(arr) # <-- pop first element
+
+        heapq.heappush(arr, 10) # <-- push new element
+
+        arr[0] # <-- peek the first element
+
+
+Bit Manipulation:
+
+Floyd’s Cycle Detection Algorithm:
+

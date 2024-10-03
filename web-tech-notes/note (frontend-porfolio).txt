@@ -1,0 +1,59 @@
+using Vite template
+https://vitejs.dev/guide/
+`npm create vite@latest . --template react`
+
+install material-ui (for component)
+https://mui.com/material-ui/getting-started/installation/
+`npm install @mui/material @emotion/react @emotion/styled`
+(for tabs)
+`npm install @mui/lab`
+intall icon from material ui (for icons)
+`npm install @mui/icons-material @mui/material @emotion/styled @emotion/react`
+
+install 3D carousel
+`npm i react-spring-3d-carousel`
+
+install Swiper (used for card carousel)
+`npm i swiper`
+
+install normalize css (for CSS reset)
+`npm install --save normalize.css`
+
+install framer motion (for tab change animation)
+`npm install framer-motion`
+
+install react type animation (for home page word animation)
+`npm install react-type-animation`
+install react react-typed (for home page word animation)
+`npm install react-typed --save`
+
+install react-moveable-ticker (Not fully working)
+`npm uninstall react-moveable-ticker --force`
+`npm uninstall --save core-js @babel/preset-env`// <-- require for the ticker
+`npm uninstall --save nice-react-ticker`
+install react ticker (Not working)
+`npm uninstall react-ticker`
+(not working)
+`npm i ng-ticker`
+`npm uninstall ng-ticker`
+
+npm install dotenv (to use .env variable)
+`npm install dotenv --save`
+`npm i --save-dev @types/node`
+
+npm install emailjs-com (for contact form)
+`npm install emailjs-com`
+
+install firebase (for deployment)
+in frontend directory,
+`npm install -g firebase-tools`
+then login to firebase,
+`firebase login`
+
+Optimize web for production
+`npm run build`
+
+bug report: (to be fix in the future)
+- progress bar does not work with mobile?
+- type animation not align
+- Skills carousel glitch

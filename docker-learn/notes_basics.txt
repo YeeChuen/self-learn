@@ -1,0 +1,69 @@
+Docker:
+    Tutorial from Docker:
+        git clone https://github.com/docker/welcome-to-docker
+
+        cd welcome-to-docker
+
+        - verify the `Dockerfile`
+
+        docker build -t welcome-to-docker .
+            docker build -t <image_name (anything you want)> <path to the dockerFile>
+
+    Video: (Vite + TS)
+        https://www.youtube.com/watch?v=yIpDRI5cTdI
+
+    Run Dockerfile (create image)
+        docker run --rm -p 5000:5000 <image_name>
+
+    Pull docker image
+        docker image pull <tagname/imagename>
+
+    Tag Image to another
+        docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+        docker image tag boston-bioprocess-app yeechuen/yct-bpp
+        docker image tag time-series-visualize-app yeechuen/yc-tsv-app
+
+    Push Docker Image (like push to repo Git), Push new tag to repository
+    note: tag first, then push
+        docker push <tagname/image_name, for example: yeechuen/yct-bpp>   
+        docker push yeechuen/yc-tsv-app
+
+    Other common docker command:
+        docker run 
+            start a new docker container
+
+        docker ps 
+            list all running container
+
+        docker kill <container>
+            kill a running container (immediately) (a little like stop)
+
+        docker stop <container>
+            stop a running container (in its own time)
+
+        docker restart <container>
+            used to restart a stopped container
+
+        docker rm
+            remove a docker container
+        
+        docker images
+            list all images 
+
+        docker pull <tagname/imagename>
+            download docker image from docker hub (like pull from git hub)
+
+        docker exec
+            execute a command in a running container
+
+        docker-compose
+            used to manage ulti-container docker applications
+
+        docker search <word>
+            search for <word> throughout docker hub
+
+        docker commit
+            TODO
+
+        docker history <tagname/imagename>
+            show the history of the image

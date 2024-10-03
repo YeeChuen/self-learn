@@ -1,0 +1,36 @@
+This FriendshipCard project is similar to BasicContactList project.
+
+In Python best practice, 
+its is better to have a separate virtual environment that is separate from the local machine.
+
+we can do that by running:
+
+`python -m venv venv`
+
+to activate the virtual environment, do
+
+`.\venv\Scripts\activate`
+
+to deactivate active virtual environment, do
+
+`deactivate`
+
+use pip for package management.
+
+
+rather than writing out requirements one by one, 
+
+use 
+`pip freeze > requirements.txt`
+
+Flask
+    --> the framework used in Python
+
+Flask-SQLAlchemy is an ORM (Object Relational Mapping)
+    --> allow us to connect to a SQL database,
+        and map the entries and sequel into a Python object,
+        so we can operate on these objet easier
+
+flask-cors
+    --> allow us to have cross origin request
+    --> for example (JS request --> Python or Python request --> JS)

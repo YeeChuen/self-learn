@@ -1,0 +1,32 @@
+Python:
+    number:     int
+    string:     str
+    decimal:    float
+    true/false: bool
+    array:      List[int]
+    tuple:      Tuple[int, int] # <-- for (10,20)
+    set:        Set[int]
+    dict:       Dict[str, int]
+    null:       None
+    optional:   Optional[int] # <-- this type is either int or None
+    union:      Union[str, int] # <-- this type is int or str
+
+    linked list:ListNode # <-- normally another class
+
+
+hashable type:
+    number:     int
+    string:     str
+    decimal:    float
+    true/false: bool
+    tuple:      Tuple[int, int]
+    null:       None
+
+building class in python:
+class PythonClass:
+    def __init__(self, argument_int: int, argument_list: List[int]):
+        self._int = argument_int
+        self._list = argument_list
+    
+    def function_1(self, func_arg_str: str) -> int:
+        return len(func_arg_str)

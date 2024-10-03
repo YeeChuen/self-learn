@@ -1,0 +1,5 @@
+1. build your web project
+
+set up DNS config?
+SSL certificate?
+licensing?

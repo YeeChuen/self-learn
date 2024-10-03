@@ -1,0 +1,16 @@
+AWS:
+    EC2:
+        deploy using docker:
+            ref videos:
+                https://www.youtube.com/watch?v=Ha1s9Hhjc_Q
+                https://www.youtube.com/watch?v=Zem1H7Rr9yM
+
+            - push your docker to docker hub
+            - create ec2 instance
+            - connect to ec2 instance
+            - run following command:
+                sudo apt-get update
+                sudo apt-get install docker.io
+                sudo service docker start
+                sudo docker pull welcome-to-docker
+                sudo docker run -p 8000:8000 -it <tagname/imagename>

@@ -1,0 +1,5 @@
+set up elastic IP so that if your instance stopped and started again, it still have the same IP address. 
+
+DNS
+    Domain Name System
+        -> connect to IP address 

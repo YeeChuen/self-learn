@@ -1,0 +1,22 @@
+sign up aws account
+
+aws.amazon.com
+
+require
+- credit card
+
+Root account
+- username
+- password
+
+IAM user account
+- username
+- password
+- Account ID/alias
+- login link
+
+IAM stands for Identity Access Management
+
+Root account
+- is like admin.
+- typical not used 
