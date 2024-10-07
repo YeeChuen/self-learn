@@ -256,6 +256,22 @@ Tree algorithm:
             # do current node stuff here for inorder
             traversal(node.right)
             # do current node stuff here for postorder
+
+    Path to node:
+        def path_to_node(root, t):
+            def dfs(node, path, t):
+                if not node:
+                    return None
+
+                if node.val == t:
+                    return path + [node.val]
+
+                path_l = dfs(node.left, path + [node.val], t)
+                path_r = dfs(node.right, path + [node.val], t)
+
+                return path_l or path_r or []
+                
+            return dfs(root, [], t)
     
     Is Same Tree:
         def is_same_tree(root_a, root_b):
