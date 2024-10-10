@@ -1,0 +1,41 @@
+OOP examples in Python (Basic only)
+
+# Base class (Parent)
+class Vehicle:
+    # Constructor (__init__) - Encapsulation
+    def __init__(self, make, model, year):
+        self.make = make   # Public attribute
+        self.model = model # Public attribute
+        self.year = year   # Public attribute
+
+        # use double underscore for private attribute (Encapsulation)
+        self.__private = "private attribute"
+        # but you can still access if (but more difficult, and its not best practice)
+        # by doing: audi._Vehicle__private  (i.e. <variable defined>._<class>__<private>)
+    
+    # Method to display vehicle details
+    def get_details(self):
+        return f"{self.year} {self.make} {self.model}"
+    
+    # Method to describe vehicle movement
+    def move(self):
+        return "The vehicle is moving."
+
+
+# Derived class (Child) - Inheritance
+class Car(Vehicle):
+    # Additional attribute specific to Car class
+    def __init__(self, make, model, year, num_doors):
+        super().__init__(make, model, year)  # Inherit attributes from Vehicle class
+        self.num_doors = num_doors           # New attribute specific to Car
+    
+    # Overriding method (Polymorphism)
+    def move(self):
+        return "The car is driving on the road."
+
+
+# Another Derived class (Child) - Inheritance
+class Boat(Vehicle):
+    # Overriding method (Polymorphism)
+    def move(self):
+        return "The boat is sailing on water."
