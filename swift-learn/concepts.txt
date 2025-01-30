@@ -1,0 +1,28 @@
+Optionals
+    <data type>? --> similar to JS where this var/property can be nil
+        String?
+
+Closures
+    Simlar to JS
+
+Guard Statement
+    its like opposite of if statement
+
+    guard true { 
+        // execute here only if false
+    }
+    // continue if true
+
+Unwrapping
+    <variable>! --> forced unwrapping
+        num!
+
+    or unwrapping in Statement
+    if let value = dict[key] {
+        print(value) // <-- you can use it if successfully unwrapped
+    }
+
+typealias
+    create custom type name, NOT ACTUAL TYPE, just alias name
+    typealias pairType = [String: Int]
+    var dictionary: pairType = ["s" : 1, ...]
