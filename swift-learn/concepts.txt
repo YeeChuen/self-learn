@@ -1,3 +1,6 @@
+learn more:
+https://developer.apple.com/documentation/Swift
+
 Optionals
     <data type>? --> similar to JS where this var/property can be nil
         String?

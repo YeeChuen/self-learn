@@ -74,16 +74,17 @@ Array Algorithm:
 
         Code example:
             def binary_search(nums, target):
-                start = 0
-                end = len(nums) - 1 # <-- inclusive end
-                while start < end:
-                    mid = (start + end) // 2
+                l = 0
+                r = len(nums) # <-- exclusive end
+                while l < r:
+                    mid = (l + r) // 2
                     if nums[mid] == target:
                         return mid
                     if nums[mid] < target:
-                        start = mid + 1
-                    else 
-                        end = mid
+                        l = mid + 1
+                    else:
+                        r = mid
+                return -1
 
     Prefix/Suffix Sum: (Array)
         Prefix Sum is an array that contain all the prefix summation (inclusive of i)

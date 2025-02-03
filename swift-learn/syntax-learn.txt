@@ -442,6 +442,11 @@ var numsArray3 = [4, 3, 1, 2]
 print(numsArray1.elementsEqual(numsArray2))
 print(numsArray1.elementsEqual(numsArray3)) // false because order matter
 
+numsArray1.reverse()
+print(numsArray1)
+numsArray3.sort() // <-- sort does not return, sorted will return new array
+print(numsArray3)
+
 // create array of size 5
 var arraySizeFive = Array(repeating: 0, count: 5) // <-- cannot use nil
 print(arraySizeFive)
