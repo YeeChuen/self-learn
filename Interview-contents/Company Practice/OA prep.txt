@@ -1,0 +1,8 @@
+https://github.com/Leader-board/OA-and-Interviews/blob/main/Online%20Assessments.md
+
+What it said is typically quite accurate
+TT OA - 1/31/2025, did follow this pattern
+    1. easy
+    2. easy
+    3. implementation heavy
+    4. optionality and clever implementation

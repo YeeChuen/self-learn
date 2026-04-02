@@ -1,0 +1,47 @@
+Reference:
+    Google Gemini
+
+Here is the updated list, moving Post Search into the Search & Discovery category while keeping the other items in their most common interview groupings.
+## 1. Application System Design (User-Facing Products)
+These questions focus on the end-to-end user experience, product flow, and major architectural trade-offs.
+    * Social & Content Feeds: Focus on fan-out, feed generation, and high-read volume.
+        * Examples: Twitter, Facebook, Instagram.
+    * Transactional & Booking: Focus on ACID compliance, distributed locking, and preventing double-booking.
+        * Examples: Ticketmaster, Hotel Booking, Parking Lot, Robinhood(Consumer trading)
+    * Real-Time Communications: Focus on low-latency, persistent connections (WebSockets), and message delivery.
+        * Examples: WhatsApp, Slack, Tinder(Match&Chat logic), Trading View(Charts)
+    * Marketplace & Logistics: Focus on real-time matching, location tracking, and ETA calculations.
+        * Examples: Uber, DoorDash, Tinder(Discovery&Swipe logic).
+    * Streaming & Storage: Focus on high-bandwidth binary data, global delivery (CDNs), and library synchronization.
+        * Examples: Netflix, Spotify, Google Drive, Dropbox.
+    * Utility Applications: Standalone services providing specific user utilities.
+        * Example: Bit.ly(URL Shortener).
+
+## 2. Collaborative & Productivity Systems
+This category addresses the unique challenges of real-time state synchronization and isolated execution environments.
+    * Collaborative Editing: Focus on conflict resolution (OT or CRDTs) and low-latency state syncing.
+        * Example: Google Docs.
+    * Online Judges & Execution: Focus on secure, isolated code execution (Sandboxing) and high-concurrency leaderboards.
+        * Example: LeetCode.
+
+## 3. Backend & Data System Design (Internal Logic)
+These focus on how data is indexed, searched, and distributed behind the scenes.
+    * Search & Discovery: Focus on high-speed indexing, ranking, and retrieval.
+        * Examples: Google Search, Post Search, Autocomplete(Type-ahead).
+    * Analytics & Event Ingestion: Focus on massive write throughput and stream processing.
+        * Examples: Ad Click Aggregator, Real-time Dashboards.
+    * Payment & Financial: Focus on idempotency, ledger integrity, and payment gateways.
+        * Examples: Stripe API, Digital Wallets.
+    * Crawler Systems: Focus on graph traversal and scheduling.
+        * Example: Web Crawler (Google Bot).
+
+## 4. Infrastructure System Design (The Building Blocks)
+These are specialized middleware components used to protect, scale, or decouple services.
+    * Access & Traffic Control: Focus on security, reliability, and protecting internal services.
+        * Examples: Rate Limiter, API Gateway, Load Balancer.
+    * Data & Performance: Focus on latency reduction and data consistency models.
+        * Examples: Distributed Cache (Redis), Key-Value Store (Dynamo).
+    * Messaging & Notification: Focus on decoupling services and asynchronous delivery.
+        * Examples: Notification System, Message Queues (Kafka).
+    * Naming & Routing: Focus on coordination and discovery across a distributed system.
+        * Examples: Unique ID Generator (Snowflake), Service Discovery.

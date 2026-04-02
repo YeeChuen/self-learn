@@ -1,0 +1,171 @@
+Reference(s):
+    https://www.youtube.com/watch?v=Ru54dxzCyD0
+    https://www.youtube.com/watch?v=i53Gi_K3o7I&list=PLot-Xpze53le35rQuIbRET3YwEtrcJfdt
+    https://www.youtube.com/watch?v=s9Qh9fWeOAk
+
+Interview : 
+    Typical flows
+        1. Requirements clarification 
+            - Users/Customers
+            - Scale (Read/Write) 
+            - Performance 
+            - Cost 
+        2. Turn them into funtional or non functional Requirements
+            - Functional requirements
+                for example, for youtube system, must be able to upload/watch video
+            - Non-functional requirements
+                for example, for youtube system, video should load fast (low latency), should able to upload 10m videos (scalable)
+        3. Identify Core Entities
+            - ? 
+        4. API or Interface Design
+            - ?
+        5. Data Flows
+            - ?
+        6. High Level Design
+            - ?
+        7. Dive Deeps
+            - ?
+
+Monolithic vs Distributed Systems : 
+    ?
+
+
+Fundamentals (building blocks) : 
+    Client
+        - Web browser, mobile app
+        - User Interface that allow user to interact/use with the system
+    
+    Server
+        - Databases, LoadBalancers, etc 
+        - Non-user facing application.
+        
+    IP Address
+        - every public server has a unique IP address (like phone number)
+        - Client need to send request to the correct IP address in order to talk to server
+
+    Domain Name
+        - IP Address is hard to remember, hence we typically use Domain Name instead.
+        - This is what user typically use. such as google.com, youtube.com, etc.
+
+    Domain Name System (DNS)
+        - Store maps of Domain Name to its corresponding IP Address.
+        - When you use Domain Name, your computer/system ask DNS for the actual IP, then establish connection to the IP
+
+    Proxy / Reverse Proxy (reverse just means when proxy is on the server side.)
+        - Middle man between your device to the internet.
+
+    
+    Hypertext Transfer Protocol Secure (HTTP / HTTPS)
+        - Protocol of transferring data
+        - Request contains Header, Browser Type, Cookies, Body, etc
+        - Response contain status, message, error, etc. 
+        - with "S" basically the request is being encrypted using SSL or TLS
+
+    Application Programming Interfaces (APIs)
+        - Allow Client to talk to Server. 
+        - Standard methods such as GET, POST, PUT, DELETE
+        - Example such as REST, GraphQL
+
+    REST
+        - API style that defines how client and service communicate in a structured way.
+        - Response typically has more information than needed
+        - For example, query user will get you userId, userName, userAge, ... etc, even when you need userName only.
+
+    GraphQL
+        - API style that allow client query for exactly what they need
+        - More processing on the server side
+        - For example, query userName will get you only userName. (Only the field you ask for)
+
+    Vertical Scaling
+        - Scale system by increasing machine's power
+        - Such as more CPU, RAM, Storage, etc
+
+    Horizontal Scaling
+        - Scale system by increasing number of machines
+        - Such as Sharding, Cellular Architecture, etc
+        - Good to increase availability (no single point of failure)
+
+    Load Balancers
+        - Sits between Client and Server to distribute traffic between multiple server.
+        - Direct traffic based on Round Robin, Least Connections, Closest Server, etc
+
+    Content Delivery Networks
+        - Global network of servers that cache web content. 
+        - Such as JavaScript, HTML, images, videos.
+        - Allow users to have faster load time no matter the geographic location 
+
+    Caching
+        - Store frequent access data in memory (Key Value pair)
+        - Instant response. 
+        - Prevent outdated data in the response, we can use TTL(Time To Live) 
+
+    TCP / IP
+
+    gRPC
+
+    WebSockets
+        - Continuous 2 way connection between Client and Server
+        - Real time interaction/communication
+        - such as live chat, stock market applications
+
+    WebHooks
+        - 
+
+    DataModel 
+    
+    SQL
+        - Structured relational data(Schema) with strong consistency
+        - Use indexing to improve performance (Primary Key, Unique Key)
+            - Improve read, but slow down write. 
+        - Such as banking system
+
+    NoSQL
+        - High Scalability with flexible Schema
+
+    ACID
+
+    Sharding
+        - Split data into smaller, more manageable size across multiple db server
+        - Data distributed by sharding key, for example user id.
+        - Speed up read and write performance
+
+    Replication
+        - Multiple copy of the same database
+        - Primary Replica (typically handle write, and copy to read replica)
+        - Read Replica (typically handle read, improve read performance and availability)
+        - If Primary Replica go down, one of the Read Replica can take over.
+
+    Denormalization
+        - Table that contain frequently used column even if they do not belong together.
+        - for example, user_order_table, even with user_table and order_table.
+        - no join operation needed for user_order_table.
+        - for application that needed fast read.
+        - but introduce complate write/update operation.
+
+    CAP Theorem
+        - states that no distribution system can achieve all 3 property at the same time
+        - Consistency : every read has the most recent write
+        - Availability : every request receives a response
+        - Partition Tolerance : system continues to function despite network partitions
+
+    Message Queues
+        - allow services to communicate asynchronously
+        - decouple services to prevent blockage
+        - prevent service overload, since message need to be acknowledge 
+
+    Rate Limiting
+        - Restrict the number of request a client can send.
+        - Throttle if too much request is being sent at once.
+        - techniques such as token bucket.
+
+    API Gateway
+        - A centralized service, this is typically where the server that client will hit first.
+        - able to handle authentication, rate limiting, logging, monitoring, request routing, etc.
+        - this connects to all your other microservices
+
+    Idempotency
+        - Ensures repeated request 
+
+    Object Storage / Block Storage
+        - Store files, such as videos, images, documents. (unstructured data)
+        - such as S3

@@ -1,0 +1,101 @@
+
+https://leetcode.com/problems/kth-missing-positive-number/description/
+
+https://leetcode.com/problems/diagonal-traverse/description/
+
+https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/description/
+
+https://leetcode.com/problems/exclusive-time-of-functions/description/
+
+https://www.fastprep.io/problems/meta-solve-transportation-problem
+
+https://www.fastprep.io/problems/meta-nested-list-weight-sum
+
+Question 1:
+    Implement a simple in-memory cloud storage system that maps files to their meta information in TypeScript. This cloud storage system should support operations below
+
+    add_file(name: string, size: number) -> boolean : should add new file name to the storage. size is the amount of moemory required in bytes. this operation failes if a file with the same name exists. return true if added successfully, false otherwise.
+
+    copy_file(name_from: string, name_to: string) -> boolean : should copy the file at name_from to name_to. this operation failes if name_from points to a file that does not exists or points to a directory. The operation failes if specifed file alredy exists at name_to. Returns True if the file was copied successfully, false otherwise.
+
+    get_file_size(name: string) -> number | null : should return the size of the file name if exists, null otherwise.
+
+    file_file(prefix: string, suffix: string) -> string[] : search for files with names starting with prefix and ending with suffix. Returns a list of strings representing all matching files in this format: ["<name_1>(<size_1>)", "<name_2>(<size_2>)", ......] . The output should be sorted in descending order of file sizes, in the case of ties, lexicographically. if no files match the required properties, should return an empty list
+
+    add_user(user_id: string, capacity: int) -> bool : should add a new user to the system, with capacity as their storage limit in bytes. The total size of all files owned by user_id cannot exceed capacity. The operation fails if a user user_id already exists. Returns true if a user successfully created, false otherwise.
+
+    add_file_by(user_id: string, name: string, size: number) -> number | null : should behave the same way as add_file. but added file should be owned by the user with user_id. A new file cannot be added to the storage if doing so will exceed the user's capacity limit. Returns the remaining storage capacityt for user_id if the file is successfully added or null if otherwise
+
+    update_capacity(user_id: string, capacity: number) -> number | null : should change maximum storage capacity for the user with user_id. if the total size of all user's file exceeds the new capacity, the largest file (sorted lexicohgraphically in case of a tie) should be removed from the storage until the total size of all remaining files will no longer exceed the new capacity. Returns the number of removed files, or null if user with user_id does not exists
+
+Question 2:
+    Given two arrays of numbers, firstArray and secondArray. Return the length of the longest common prefix(LCP) between any pair of numbers from different arrays or 0 of no common prefix exists.
+
+    test cases
+    firstArray = [23, 288, 2655, 54546, 54, 555]
+    secondArray = [2, 255, 266, 244, 26, 54547]
+    solution(firstArray, secondArray) = 4
+    
+    firstArray = [23, 288, 2655, 544, 54, 555]
+    secondArray = [2, 255, 266, 244, 26, 5, 5444444]
+    solution(firstArray, secondArray) = 3
+    
+    firstArray = [817, 99]
+    secondArray = [1999, 1909]
+    solution(firstArray, secondArray) = 0
+
+Question 3: 
+    You are given an array of uppercase and lowercase English letters `recording` representing a sequence of leters typed by the user.
+
+    Your task is to count the number of times that the user changed keys while typing the sequence, considering that the uppercase and lowercase letters for a given letter require the user to press same letter key (ignore modifiers like Shift or Caps Lock). For example typing 'W' and 'w' require the user to press the same key, whereas typing 'W' and 'E' or typing 'W' and 'e' require the user to change keys.
+
+    test cases
+    recording = ['W', 'w', 'a', 'A', 'a', 'b', 'B']
+    solution(recording) = 2
+
+    recording = ['W', 'w', 'a', 'w', 'a']
+    solution(recording) = 3
+
+Question 4:
+    Implement a simple in-memory cloud storage system in TypeScript. In this storage system, each key is map to a record. each record contain multiple field, each field will have a value.
+    
+    This cloud storage system should support operations below
+
+    Get(timestamp, key, field)
+    
+    Set(timestamp, key, field, value)
+
+    Delete(timestamp, key, field)
+
+    CompareAndSet : unsure
+
+    CompareAndDelete : unsure
+
+    Scan(timestamp, key) : return all field and value
+
+    ScanWithPrefix(timestamp, key, prefix) : return all field that matches the prefix
+
+    SetWithTTL(timestamp, key, field, value, ttl) : this record should be deleted automatically when timestamp went past the set ttl
+
+    GetAtTimestamp(timestamp, key, field, at_timestamp) : return the value of the record at that specific timestamp.
+
+Question 5:
+    Implement a simple in-memory cloud storage system in TypeScript. In this storage system is a bank system, that record an account and the account's balance.
+    
+    This cloud storage system should support operations below
+
+    createAccount(account, balance)
+
+    getBalance(account)
+
+    deleteAccount(account)
+
+    addAmountToAccount(account, amount)
+
+    getTopNAccountWithHighestBalance(n): get the top n account with the highest balance 
+
+    schedulePayment(timestamp, account payment): at this timestamp the balance of this account will be deducted with the input payment amount.
+
+
+
+

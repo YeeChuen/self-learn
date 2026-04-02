@@ -1,0 +1,20 @@
+CAPTheorem :
+    3 property
+        - Consistency : all read gets the most updated data (most recent write), i.e. updated immediately
+        - Availability : all requests get a response (successful or not)
+        - Partition tolerance : System should operate despite network failures between nodes
+    
+    The CAP theorem states that distributed databases can have at most two of the three properties. Partition tolerance is generally not optional.
+
+    Limitation (trade offs)
+        - Consistency + Partition tolerance
+        - Availability + Partition tolerance 
+
+Vertical Scaling : 
+    - Scale system by increasing machine's power
+    - Such as more CPU, RAM, Storage, etc
+
+Horizontal Scaling : 
+    - Scale system by increasing number of machines
+    - Such as Sharding, Cellular Architecture, etc
+    - Good to increase availability (no single point of failure)

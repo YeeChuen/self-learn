@@ -1,0 +1,52 @@
+Reference(s):
+    https://www.youtube.com/watch?v=bUHFg8CZFws&t=1331s
+
+SQL : 
+    - Relational data (Tables)
+    - Fixed Schema, structure must be defined before adding data
+    - Scale Vertically (adding CPU/RAM to the db server)
+    - ACID compliant
+        - Atomicity : transaction either succeed or fail completely, no partial
+        - Consistency : db maintain in a valid state (meaning follows all predefined rules, constraints, relationships)
+                        like Primary/Foreign key(where reference key in other table need to exist), etc.
+        - Isolation : transaction run independently without affecting each other. changes made only when they commit
+                        prevent dirty read (read uncommit data), non-repeatable read (data change between reads), phantom read (new row appear during transition)
+        - Durability : once transaction is commited, changes is permanently safe, able to recover last commited state without losing data.
+    - SQL query language
+
+    Performance improvement
+        Indexing using Primary key or Unique key helps improve query/read speed
+
+        Denormalization to remove join operation of multiple tables.
+    
+    Sharding / Horizontal Partitioning
+        When you have multiple db machines/server, and data is split between them. (each shard stores subset of all data)
+
+    Cluster Proxy Service
+        This proxy service will know all information about all the shards. That way your service does not need to know anything about the shards.
+        It acts as the middle man between your service and the shards. When you service need to process or query data, it will talk to this cluster proxy.
+
+    Configuration Service
+        Maintains health checks connection to all shards.
+        It knows how manay/what database machines is available, if there is new ones, etc. (Like your CellConfig)
+
+    Shard Proxy
+        It does a lot, cache query results, monitor database health, publish metrics, timeout query that takes too long.
+    
+    Primary Replica / Master Shard
+        This is the original/main shard
+        Write always go to master shard, then copy to its read replica (could be syncrhonous or asynchronous)
+
+    Read Replica / Follower
+        This is a copy of the primary replica. (a replica)
+        Useful for read operation (query)
+        Typically in a different datacenters from its master shard to ensure availability
+
+    Common Usage : 
+        Commonly used for data that is structured and needed high consistency and durability
+        such as Bank System
+
+    Common Infrastructure : 
+        PostgreSQL
+        MySQL
+        

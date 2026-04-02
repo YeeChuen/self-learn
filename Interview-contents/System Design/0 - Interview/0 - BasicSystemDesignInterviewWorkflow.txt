@@ -1,0 +1,120 @@
+Reference : 
+    https://www.youtube.com/watch?v=Ru54dxzCyD0
+    https://www.youtube.com/watch?v=MIJFyUPG4Z4&t=1063s
+    https://www.youtube.com/watch?v=iUU4O1sWtJA&list=PLlbwZHvbWtyI0d_AsZBgiMCE6Gxxc4-Sd&index=2
+    https://www.youtube.com/watch?v=_UZ1ngy-kOI&list=PLlbwZHvbWtyI0d_AsZBgiMCE6Gxxc4-Sd&index=8
+    https://www.youtube.com/watch?v=fhdPyoO6aXI&list=PLlbwZHvbWtyI0d_AsZBgiMCE6Gxxc4-Sd&index=6
+
+
+Workflow:
+    1. Requirements (<5 minutes)
+        What are the functional and non functional requirements?
+
+        Functional Requirements
+            Core Feature of the system.
+
+            What should the system do?
+
+        Non Functional Requirements
+            Quality of the system. 
+            
+            What identify make this system unique, interesting, challenging?
+
+            Ask in the context of CAP Theorem, should it prioritize consistency or availability?
+            For the core functional requirements, do they need more consistency? or availability?
+
+            Does the system favor read or write in general?
+
+            Is there specific pattern? Occasional surges/spike in read/write?
+
+            In general below are the questions to ask.
+
+            What are some scalability requirement? number of user? number of read? number of storage size?
+
+            What are some performance requirement? 
+
+            What are some latency requirement? search should be low latency? read should be low latency?
+            
+            What are some consistency requirement? payment status needs heavily favors consistency, it can be down but if payment made thought, it should not double pay.
+
+            What are some availability requirement? latency service favors availability, it needs to throttle even if config has eventual consistency. 
+
+
+        Out of Scope
+            During interview, when something comes to mind, but we're trying to reduce scope, we should note that down.
+
+            Example, if the system does not heavily focus on authentication, we can add that to out of scope, and check with interviewer if that is okay, anything to reprioritize.
+                
+        Then check in with interviewer
+
+    2. Core Entities (<3 minutes)
+        The Entities the system will persist. Typically map to the core database of your system
+
+        Can skip through properties of Entity, we can add them or talk about them later and should evolve naturally
+
+        Then check in with interviewer
+
+    3. API (<5 minutes)
+        Outline the basic APIs that the client will be making to satisfy the functional requirements.
+        
+        Look back at your functional requirements and create your functional apis.
+
+        What type of API fits your functional requirements? REST? GraphQL? etc.
+
+        Your Api should exchange, input, or output the entities that you have.
+
+    4. Data Flow
+        Typically shows up in Infrastructure/Backend System Design.
+
+    Up to here, you should have only spent about 15 minutes, this gives you 20 minute for your high level design and deep Dives
+
+    5. High Level Design
+        Diagram to outline the system. (Using mermaid)
+        Primary goal is to satisfy the Functional Requirements
+        Here you should talk about the service you need, the db you need for perform you functional requirement
+
+        <Client/Server service>
+            responsibility:
+                what does this thing do? for example, API Gateway routes request from client to the correct server/microservie
+            additional info:
+                what does it have? for example, Database will have different table.
+            incoming:
+                who calls this service? for example, API Gateway calls by client
+            outgoing:
+                who this service calls? for example, a simple CRUD service calls Database
+                
+
+    6. Deep Dives
+        Goal here is to find 1-3 places in your high level design, and dive deep to show off technical depth
+        Diagram to outline improvements to the system. (Using mermaid)
+        Here you should reference your Non Functional Requirements.
+
+        Here you also typically go into technical depth, such as 
+            identifying specific infrastructure/tool, with their pros and cons. Specific algorithm, calculation
+        
+        <Specific Infrastructure Tool/Service>
+            techstack:
+                What are the actual name of the techstack/algorithm?
+            how does it work:
+                How does this Infrastructure Tool works?
+            how does it improve your system:
+                Scale? Performance? Latency?
+            responsibility:
+                what does this thing do?
+            additional info:
+                additional information? examples, etc.
+            incoming:
+                who calls this service? for example, API Gateway calls by client
+            outgoing:
+                who this service calls? for example, a simple CRUD service calls Database
+
+Diagrams:
+    Any Diagram from "5. High Level Design" and "6. Deep Dives" should go here. 
+
+    Some common language used for digramming are Mermaid language.
+
+    2 phase book ticket Diagram
+
+    ```mermaid
+    ```
+

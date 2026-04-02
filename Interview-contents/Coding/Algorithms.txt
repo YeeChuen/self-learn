@@ -10,13 +10,14 @@ Array Algorithm:
             - quick_select(arr, start, end, k)  (method): Perform quick select algorithm in a recursive style.
 
         note:
-            quick select used inclusive end.
+            quick select used inclusive end. (the last index, i.e. size of array - 1)
+            this algorithm finds the kth smallest element, [7, 10, 4, 3, 20, 15], k = 3, answer is 7
 
         Code example:
             def partition(nums, start, end):
                 l = start
                 pivot_num = nums[end]
-                for r in range(start, end):
+                for r in range(start, end): # note that range here never include the `end` index, only iterate up to end - 1
                     if nums[r] <= pivot_num:
                         nums[l], nums[r] = nums[r], nums[l]
                         l += 1
@@ -75,7 +76,11 @@ Array Algorithm:
         Code example:
             def binary_search(nums, target):
                 l = 0
-                r = len(nums) # <-- exclusive end
+
+                ## r variable here is interesting.
+                ## if you're just looking to get binary search to find target, you need to use size of list, i.e. len(nums)
+                ## if you're looking to find pivot/mininum value in list, you need to use the last element, i.e. len(nums) - 1
+                r = len(nums) # <-- exclusive end (last index + 1, i.e size of array)
                 while l < r:
                     mid = (l + r) // 2
                     if nums[mid] == target:
@@ -105,7 +110,7 @@ Array Algorithm:
     
     Longest Consecutive Subsequence (Int Array):
         def longestConsecutive(self, nums):
-            nums_set = set(nums)
+            nums_set = set(nums) # <-- here the set is fully populated, hence we can do ascending checks
             max_consecutive = 0
             for num in nums:            
                 # we skip everything else and 
@@ -179,14 +184,14 @@ Graph Algorithm:
                     if not visited[neighbor]:
                         dfs_recursive(neighbor, graph, visited)
     
-    Union Find: (Tree, Graph) (check cycle in undirected graph)
+    Union Find: (Tree, Graph) (main usage to check cycle in undirected graph)
         reference: 
             https://leetcode.com/problems/redundant-connection/solutions/3553428/python-simple-and-clean-beats-88/
             https://www.youtube.com/watch?v=ayW5B2W9hfo
 
         Union Find has 3 component:
             - parent        (list/map)  : parent list to track the parent of each index
-            - find(x)       (method)    : find the parent of x
+            - find(x)       (method)    : find the parent/representative of x (representative of a group, see youtube video)
             - union(x, y)   (method)    : Union x and y so they have the same parent.
         
         Code example:

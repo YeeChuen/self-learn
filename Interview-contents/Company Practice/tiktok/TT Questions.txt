@@ -1,0 +1,112 @@
+Question (a) Is Possible
+    Consider a pair of integers, (a, b). The following operations can be performed on (a, b) in any order, zero or more times:
+    - (a, b) -> (a + b, b)
+    - (a, b) -> (a, a + b)
+
+    Return a string that denotes whether or not (a, b) can be converted to (c, d) by performing zero or more of the operations specified above.
+
+    Example
+    (a, b) = (1,1)
+    (c, d) = (5,2)
+    True
+
+    LC reference : exact question https://leetcode.com/problems/reaching-points
+    Solution : BFS (bottom up, with comparing lower bound) or using Math
+
+Question (b) Stars and Bars
+    Given a string s consisting of stars "*" and bars "|", an array of starting indices startIndex, and an array of ending indices endIndex, determine the number of stars between any two indices, inclusive. Note that in this problem, indexing starts at 1.
+    - A star is represented as an asterisk ("*" = ascii decimal 42)
+    - A bar is represented as a pipe ("|" =  ascii decimal 124)
+
+    Example
+    s = "|**|*|*"
+    startIndex = [1,1]
+    endIndex = [5,6]
+
+    For the first pair of indices, (1,5), the substring is "|**|*". There are 2 stars between a pair of bars. For the second pair of indices, (1,6), the substring is "|**|*|" and there are 2 + 1 = 3 stars between bars. 
+    Both answers are returned in an array, [2, 3]
+
+    LC reference : 
+        manual test code here, Question 8 : https://leetcode.com/playground/Etwxtjzy 
+        practice : https://www.fastprep.io/problems/tiktok-stars-and-bars
+        Forum question https://leetcode.com/discuss/post/1225268/amazon-sde3-assesment-by-anonymous_user-yiht/
+        Solution : using prefix sum for O(m + n), or 2d loop for O(mn)
+
+Question (c) Dominos Tiliing 3D
+    Given tiles of dimensions 1 x 1 x 2, determine how many ways they can be arranged to form a rectangular solid of dimensions 2 x 2 x n. For example, if n = 1, there are two ways of doing so.
+
+    The number of permutations increase quickly, so the return value should be modulo(10^9 + 7).
+
+    LC reference : 
+        TODO understand how to tackle DP in general... you did not understand it.
+        manual test code here, Question 9 : https://leetcode.com/playground/Etwxtjzy
+        Similar question https://leetcode.com/problems/domino-and-tromino-tiling/description/
+
+Question (d) Untitled
+    Given an array of integers numbers, find the first index i for which three consecutive elements numbers[i], numbers[i + 1], and numbers[i + 2] are all greater than a given threshold. If there is no such index, return -1
+
+    Note: You are not expected to provide the most optimal solution, but a solution with time complexity not worse that O(n^2) will fit within the execution time limit.
+
+    Example
+    numbers = [0, 1, 4, 3, 2, 5]
+    threshold = 1
+    answer = 2 (index 2 and to on, [4, 3, 2] is all greater than 1)
+
+    numbers = [-9, 95, 94, 4, 51]
+    threshold = 42
+    answer = -1
+
+    LC reference : 
+        manual code testing : https://leetcode.com/playground/Etwxtjzy *but don't know if the code signal actual have these test cases.
+        Answer seems to be here : https://askfilo.com/user-question-answers-smart-solutions/given-an-array-of-integers-numbers-find-the-first-index-i-3335373439343138
+
+Question (e) Untitled
+    You are working with data collected from various sensors. Given an array of non-negative integers readings representing the sensor readings, transform the array by repeatedly replacing each element with the sum of its digits. Continue this transformation until every element is a single digit. Return the most occuring digit in the final array. In case of a tie, return the highest digit.
+
+    Note: You are not expected to provide the most optimal solution, but a solution with time complexity not worse than O(n^2) will fit within the execution time limit.
+
+    Example
+    readings = [123, 456, 789, 101]
+    answer = 6 [1+2+3 = 6, 4+5+6=1+5=6, 7+8+9=2+4=6, 1+0+1=2] = [6,6,6,2]
+
+    readings = [6]
+    answer = 6
+
+    LC reference : iterate list O(n) and use O(1) way to addDigits (mod 9) https://leetcode.com/problems/add-digits/description/ the O(n) iterate list to get answer
+
+Question (f) Untitled
+    Imagine that your mobile phone is currently out of battery, but you need to use it for t more minutes. Luckily, you have a number of spare batteries that are fully charged, where the ith battery lets you use the phone for capacity[i] more minutes. After capacity[i]. this battery becomes depleted, and has to be fully recharged for recharge[i] minutes before you can use it again. You use the extra betteries in the given order until each one is fully depleted, and then switch to the next one. If the next battery is still recharging, skip it and try the next one. This process continues cyclically until you are done using your phone after t minutes
+
+    Return the number of full batteries used during the t minutes you need to use your phone. If it is impossible have the phone working during the t minutes you need to use your phone. If it is impossible have the phone working during the entire duration of t minutes, i.e. if at some point all batteries are recharging and unavailable, return -1
+
+    not worst than O(t * n) 
+
+    Example
+    t = 16
+    capacity = [2, 5, 6]
+    recharge = [12, 1, 4]
+    answer = 3
+
+    LC reference : 
+        TODO revision on this (idek wtf is this)
+        stack over flow : https://stackoverflow.com/questions/73994046/calculate-total-number-of-batteries-used
+
+Question (g) Untitled
+    A spy agency has intercepted fragments of a secret code. Each fragment is represented as a positive integer in an array called fragments. Intelligence suggests that the complete access code is a specific number called accessCode
+
+    Your mission is to determine how many different ways the fragments can be paired to form the complete access code. the agency's cryptography rules state that:
+    - When fragments are combined, they are simply placed next to each other (not added mathematically)
+    - Each specific pair of fragments (by position in the array) counts as a unique combination
+    - The fragments can be used in any order, but each fragment position can only be used once in a combination
+
+    For example, if fragment "12" is followed by fragment "34", the result is "1234"
+
+    Example
+    fragments = [1, 212, 12, 12]
+    accessCode = 1212
+    answer = 3 (fragments[0]+fragments[1], fragments[2]+fragments[3], fragments[3]+fragments[2])
+
+    LC reference : 
+        Practiced : BackTracking : basics (can see notes)
+        https://www.gauthmath.com/solution/1837404197339170/A-spy-agency-has-intercepted-fragments-of-a-secret-main-C-code-Each-fragment-is-
+

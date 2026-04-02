@@ -1,0 +1,22 @@
+Reference(s):
+    https://www.youtube.com/watch?v=bUHFg8CZFws&t=1331s
+
+NoSQL : 
+    - Non-relational (Document, Key-Value, Graph, Wide-column)
+    - Dynamic Schema, can change on the fly (can depends on infra used)
+    - Scale Horizontally (adding more server)
+    - BASE/CAP integrity (Prioritize availability, eventual consistency)
+    - not set query language
+
+    pro : 
+
+    cons : 
+
+    common usage : 
+
+    common infra/tool : 
+        - Cassandra ()
+        - MongoDB (Document)
+        - Neo4j (Graph)
+        - DynamoDB ()
+
