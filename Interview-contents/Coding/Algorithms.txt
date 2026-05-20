@@ -1,6 +1,47 @@
 ALGORITHM (Python example)
 
+Random library:
+    Get Random from Array:
+        import random
+        random.choice(list1)
+
+    Randomize/shuffle the array:
+        import random
+        random.shuffle(list1)
+    
+    Pick random int:
+        import random
+        random.randint(0, 100)
+
+    Pick random float:
+        import random
+        random.uniform(0,1)
+
+Useful library:
+    Count frequency:
+        freq = collections.Counter(list1)
+
+    Binary Search library:
+        index = bisect.bisect_left(list1, itemToFind) # find item or place to insert to the left.
+    
+    Head library:
+        heapq.heapify(list1) # list1 is now a heap list.
+
+        heapq.heappop(list1) # heap pop
+
+        heapq.heappush(list1, itemToPush)
+
+    Cache library:
+        @cache # <-- adding this annotation adds a cache to the function
+        def functionToCache(input):
+            ...return
+
 Array Algorithm:
+    Array Tips and Tricks:
+        In some algorithm, if value of array is [1, n] or [0, n-1], you can:
+            - use the value as index to the array itself to "mark" it, for example, as seen
+            - use the value as index to the array itself as traversal
+
     Quick Select: (Array) (find kth in index)
         reference:
             https://www.youtube.com/watch?v=AqMiMkPOutQ
@@ -18,7 +59,7 @@ Array Algorithm:
                 l = start
                 pivot_num = nums[end]
                 for r in range(start, end): # note that range here never include the `end` index, only iterate up to end - 1
-                    if nums[r] <= pivot_num:
+                    if nums[r] <= pivot_num: # <-- change this to be kth largest
                         nums[l], nums[r] = nums[r], nums[l]
                         l += 1
                 nums[l], nums[end] = nums[end], nums[l]
@@ -75,21 +116,17 @@ Array Algorithm:
 
         Code example:
             def binary_search(nums, target):
-                l = 0
-
-                ## r variable here is interesting.
-                ## if you're just looking to get binary search to find target, you need to use size of list, i.e. len(nums)
-                ## if you're looking to find pivot/mininum value in list, you need to use the last element, i.e. len(nums) - 1
-                r = len(nums) # <-- exclusive end (last index + 1, i.e size of array)
+                # update, using inclusive end (r) is more reliable for most situation
+                l, r = 0, len(nums) - 1
                 while l < r:
-                    mid = (l + r) // 2
-                    if nums[mid] == target:
-                        return mid
-                    if nums[mid] < target:
-                        l = mid + 1
+                    m = (l + r) // 2
+                    if nums[m] == target: # you can use this to do a lot of things, find minimum of some calculation, etc.
+                        return m
+                    if nums[m] <= target:
+                        l = m + 1
                     else:
-                        r = mid
-                return -1
+                        r = m
+                return l if nums[l] == target else -1
 
     Prefix/Suffix Sum: (Array)
         Prefix Sum is an array that contain all the prefix summation (inclusive of i)
@@ -132,17 +169,13 @@ Array Algorithm:
         def reverse(nums):
             return nums[::-1]
 
-    Get Random from Array:
-        import random
-        random.random(list1)
-
     Delete specific item by index in Array:
         using del, remove by index
             del list1[2] # <-- this remove the item at index 2
         using remove, remove by value (first occurence)
             list1.remove("Item")
         using pop, remove and return the element at index
-            list1.pop()
+            list1.pop() # <-- default pop last element, do list1.pop(0) to pop first element
         using clear, remove all
             list1.clear()
 
@@ -174,7 +207,7 @@ Graph Algorithm:
                         # do your pop here. 
                         # do your neighbor visit here.
 
-    Depth First Search: (Tree, Graph)
+    Depth First Search: (Tree, Graph) (Use this to check if graph has cycle, should not point to any Ancestor)
         Code example (basic structure):
             def dfs_recursive(curr_node, graph, visited):
                 visited[curr_node] = True
@@ -205,13 +238,15 @@ Graph Algorithm:
 
             def union(x, y):
                 p_x, p_y = find(x), find(y)
-                if p_x == p_y:
+                if p_x == p_y: # same parents means x and y are connected
                     return True # <-- return can change depending of uses.
                 parent[p_y] = p_x
                 return False
 
     Graph Coloring:
         use BFS layer traversal method, and constantly rotate on the colors
+
+        # this can be used to check if graph is bipartite
 
     Clone Graph:
         use a dictionary/hash map where key value pair
@@ -249,6 +284,46 @@ Back Tracking: (Tree, Graph, Array) (combinations, permutation) (dfs structure)
 
                 # for permutation use below: O(n!)
                 backtrack(search_space[:i] + search_space[i + 1:], path + [search_space[i]], k, solution)
+        
+        # you don't necessarily need to pass in search search_space
+        def bt(index, curr):
+            if <some conditional>:
+                return <some value>
+            
+            for i in range(index, len(search_space)):
+                bt(i + 1, curr + search_space[i])
+
+    See this question for Bottom-Up vs Top-Down approach:
+        https://leetcode.com/problems/subsets-ii/description/
+        
+        def btBU(idx):
+            if idx == len(nums):
+                res.append(path[:])
+                return
+            
+            path.append(nums[idx])
+            btBU(idx + 1)
+            path.pop()
+
+            while idx + 1 < len(nums) and nums[idx] == nums[idx+1]:
+                idx += 1
+            btBU(idx+1)
+
+        def btTD(i):
+            copy = path[:]
+            # if copy not in res: # <-- this check here took way too long.
+            res.append(copy)
+
+            if i >= len(nums):
+                return
+
+            for j in range(i, len(nums)):
+                # this dedup only works if nums is sorted
+                if j != i and nums[j]==nums[j-1]: # <-- this removes duplicate, with this you can remove "copy not in res" check
+                    continue
+                path.append(nums[j])
+                btTD(j+1)
+                path.pop()
 
 
 Tree algorithm:
@@ -279,15 +354,15 @@ Tree algorithm:
                 
             return dfs(root, [], t)
     
-    Is Same Tree:
+    Is Same Tree: (i believe there is a even better approach in leetcode, can check that)
         def is_same_tree(root_a, root_b):
             def same_tree(root_a, root_b):
                 if not root_a and not root_b:
                     return True
                 elif root_a and root_b:
                     return (
-                        root_a.val == root_b.val and 
-                        same_tree(root_a.left, root_b.left) and 
+                        root_a.val == root_b.val and  # here check both current node is the same
+                        same_tree(root_a.left, root_b.left) and # recursively do the same for left and right
                         same_tree(root_b.right, root_b.right)
                         )
                 else:
@@ -309,22 +384,23 @@ Tree algorithm:
                 return depth(root)
         min: 
             def min_depth(root):
-                if not root:
-                    return 0
+                def depth(node):
+                    if not node: # required null return 0
+                        return 0
+                    if not node.left and not node.right: # required base case 2 if child return 1
+                        return 1
 
-                minn = [float("inf")]
-                def depth(node, d):
-                    if not node:
-                        return
-                    if not node.left and not node.right:
-                        minn[0] = min(minn[0], d)
-                        return
-                    depth(node.left, d + 1)
-                    depth(node.right, d + 1)
-                depth(root, 1)
-                return minn[0]
+                    dl = float("inf") if not node.left else depth(node.left) + 1
+                    dr = float("inf") if not node.right else depth(node.right) + 1
+
+                    return min(dl, dr)
+                return depth(root)
     
+    Get height:
+        TODO, what is the different between this and depth?
+
     Balanced Binary Tree:
+        # the height of the left and right subtrees of every node differ by no more than one
         def isBalanced(self, root: Optional[TreeNode]) -> bool:
             def balance(node):
                 if not node:
@@ -333,7 +409,11 @@ Tree algorithm:
                 h_l = balance(node.left)
                 h_r = balance(node.right)
 
+                # negative 1 means some of the subtree within the recursion is not balance, hence we propagate this information 
+                # back to the top recursion
                 if h_l == -1 or h_r == -1: return -1
+
+                # here we make sure it is balance.
                 if (abs(h_l - h_r) > 1): return -1
 
                 return max(h_l, h_r) + 1
@@ -341,6 +421,7 @@ Tree algorithm:
             return not balance(root) == -1
         
     Invert Tree:
+        # swaps left and right child node positions in all sub trees
         def invertTree(self, root):
             q = [root]
             while q:
@@ -429,6 +510,7 @@ Linked List algorithm:
     Intersection:
         (to get intersection we can add padding to both l1 and l2)
         (i.e. if l1 have length 2 and l2 have length 4, after we pad, both have length of 6)
+        # this always assume link list 1 and list list 2 combine to the same link list 3 at some point
         def get_intersection(head_1, head_2):
             curr_1, curr_2 = head_1, head_2
             while curr_1 != curr_2:
@@ -438,10 +520,12 @@ Linked List algorithm:
             return curr_1 # or curr_2 is fine as well
 
     Palindrome:
-        Find mid point
+        Find mid point using slow and fast
         reverse the slow pointer
-        then while loop on both slow and fast:
-            return false if slow.val != fast.val
+        then while loop on both slow and head:
+            return false if slow.val != head.val
+            slow = slow.next
+            head = head.next
         return true
 
 Divide and Conquer:
@@ -515,7 +599,7 @@ Dynamic Programming:
                     # if condition satisfy, we take diagonal
                     if text1[i - 1] == text2[j - 1]:
                         dp[i][j] = dp[i - 1][j - 1] + 1
-                    # if condition does not satisfy, we take left or top
+                    # if condition does not satisfy, we take left or top, whichever has the longest
                     else:
                         dp[i][j] = max(dp[i - 1][j], dp[i][j -1 ])
             
@@ -653,6 +737,9 @@ Memoization:
             # your recursive method
 
 Heap + Priority Queue:
+    Heap tips and tricks:
+        Use Heap when you need to access min/max 
+
     Use Python heapq:
         import heapq
         arr = [2,65,1,1...]
@@ -664,8 +751,16 @@ Heap + Priority Queue:
 
         arr[0] # <-- peek the first element
 
-
 Bit Manipulation:
+    * AND (a & b): Result is 1 if both bits are 1. Used for masking and checking bits.
+    * OR (a | b): Result is 1 if at least one bit is 1. Used for setting bits.
+    * XOR (a ^ b): Result is 1 if bits are different. Used for toggling bits.
+    * NOT (~a): Flips all bits. Mathematically equal to -(a + 1).
+    * Left Shift (a << n): Shifts bits left by n positions. Equivalent to multiplying by 2^n.
+    * Right Shift (a >> n): Shifts bits right by n positions. Equivalent to floor division by 2^n.
 
 Floyd’s Cycle Detection Algorithm:
+    using slow and fast pointer, if a link list has cycle, they will meet again.
 
+Fisher-Yates Algorithm:
+    randomization algorithm
